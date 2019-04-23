@@ -1,4 +1,5 @@
 function SModel = xmdParse(varargin)
+%This is new
 %XMLPARSE Summary of this function goes here
 %   Detailed explanation goes here
 
