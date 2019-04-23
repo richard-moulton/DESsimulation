@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="2.1" type="FSA" id="test">
+<data>
+	<state id="1">
+		<properties>
+			<initial />
+			<marked />
+		</properties>
+		<name>1</name>
+	</state>
+	<state id="2">
+		<properties/>
+		<name>2</name>
+	</state>
+	<state id="3">
+		<properties/>
+		<name>3</name>
+	</state>
+	<state id="4">
+		<properties>
+			<marked />
+		</properties>
+		<name>4</name>
+	</state>
+	<event id="2">
+		<properties>
+			<controllable />
+			<observable />
+		</properties>
+		<name>a</name>
+	</event>
+	<event id="3">
+		<properties>
+			<observable />
+		</properties>
+		<name>b</name>
+	</event>
+	<event id="4">
+		<properties>
+			<controllable />
+		</properties>
+		<name>c</name>
+	</event>
+	<event id="5">
+		<properties />
+		<name>d</name>
+	</event>
+	<transition id="9" source="1" target="2" event="2">
+	</transition>
+	<transition id="10" source="2" target="2" event="3">
+	</transition>
+	<transition id="11" source="2" target="4" event="4">
+	</transition>
+	<transition id="12" source="4" target="1" event="5">
+	</transition>
+	<transition id="13" source="4" target="3" event="2">
+	</transition>
+	<transition id="14" source="4" target="3" event="4">
+	</transition>
+	<transition id="15" source="2" target="3" event="3">
+	</transition>
+	<transition id="16" source="2" target="3" event="5">
+	</transition>
+	<transition id="17" source="3" target="1" event="2">
+	</transition>
+	<transition id="18" source="3" target="1" event="5">
+	</transition>
+</data>
+<meta tag="layout" version="2.1">
+	<font size="12.0"/>
+	<layout uniformnodes="false"/>
+	<state id="1">
+		<circle r="18.0" x="400.0" y="300.0" />
+		<arrow x="36.0" y="0.0" />
+	</state>
+	<state id="2">
+		<circle r="18.0" x="560.0" y="300.0" />
+		<arrow x="1.0" y="0.0" />
+	</state>
+	<state id="3">
+		<circle r="18.0" x="560.0" y="420.0" />
+		<arrow x="1.0" y="0.0" />
+	</state>
+	<state id="4">
+		<circle r="18.0" x="720.0" y="300.0" />
+		<arrow x="1.0" y="0.0" />
+	</state>
+	<transition id="9">
+		<bezier x1="400.0" y1="300.0" x2="560.0" y2="300.0" ctrlx1="453.3333435058594" ctrly1="300.0" ctrlx2="506.6666564941406" ctrly2="300.0" />
+		<label x="5.0" y="5.0" />
+	</transition>
+	<transition id="10">
+		<bezier x1="560.0" y1="300.0" x2="560.0" y2="300.0" ctrlx1="509.08831787109375" ctrly1="249.08831787109375" ctrlx2="610.9116821289062" ctrly2="249.08831787109375" />
+		<label x="5.0" y="5.0" />
+	</transition>
+	<transition id="11">
+		<bezier x1="560.0" y1="300.0" x2="720.0" y2="300.0" ctrlx1="613.3333129882812" ctrly1="300.0" ctrlx2="666.6666870117188" ctrly2="300.0" />
+		<label x="5.0" y="5.0" />
+	</transition>
+	<transition id="12">
+		<bezier x1="720.0" y1="300.0" x2="400.0" y2="300.0" ctrlx1="617.3004760742188" ctrly1="189.64151000976562" ctrlx2="505.9931640625" ctrly2="202.372314453125" />
+		<label x="5.0" y="5.0" />
+	</transition>
+	<transition id="13" group="1">
+		<bezier x1="720.0" y1="300.0" x2="560.0" y2="420.0" ctrlx1="666.6666870117188" ctrly1="340.0" ctrlx2="613.3333129882812" ctrly2="380.0" />
+		<label x="5.0" y="5.0" />
+	</transition>
+	<transition id="14" group="1">
+		<bezier x1="720.0" y1="300.0" x2="560.0" y2="420.0" ctrlx1="666.6666870117188" ctrly1="340.0" ctrlx2="613.3333129882812" ctrly2="380.0" />
+		<label x="5.0" y="5.0" />
+	</transition>
+	<transition id="15" group="2">
+		<bezier x1="560.0" y1="300.0" x2="560.0" y2="420.0" ctrlx1="560.0" ctrly1="340.0" ctrlx2="560.0" ctrly2="380.0" />
+		<label x="1.0" y="-3.0" />
+	</transition>
+	<transition id="16" group="2">
+		<bezier x1="560.0" y1="300.0" x2="560.0" y2="420.0" ctrlx1="560.0" ctrly1="340.0" ctrlx2="560.0" ctrly2="380.0" />
+		<label x="1.0" y="-3.0" />
+	</transition>
+	<transition id="17" group="3">
+		<bezier x1="560.0" y1="420.0" x2="400.0" y2="300.0" ctrlx1="506.6666564941406" ctrly1="380.0" ctrlx2="453.3333435058594" ctrly2="340.0" />
+		<label x="5.0" y="5.0" />
+	</transition>
+	<transition id="18" group="3">
+		<bezier x1="560.0" y1="420.0" x2="400.0" y2="300.0" ctrlx1="506.6666564941406" ctrly1="380.0" ctrlx2="453.3333435058594" ctrly2="340.0" />
+		<label x="5.0" y="5.0" />
+	</transition>
+</meta>
+</model>
