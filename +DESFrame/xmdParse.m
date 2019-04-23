@@ -1,7 +1,29 @@
 function SModel = xmdParse(varargin)
-%This is new
-%XMLPARSE Summary of this function goes here
-%   Detailed explanation goes here
+%XMDPARSE Parse a IDES XMD model file
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   File:           xmdParse.m
+%   Author:     AJ Marasco
+%   Version:    beta
+%   Date:       22 April 2019
+%
+%   Package: This file is part of the DESFrame package.
+%
+%   Description: Reads an IDES model file (.xmd) and generates the model 
+%       structure for use in simulations.
+%
+%   Usage:
+%       xmdParse() - Opens a gui for the user to select an appropriate .xmd file and
+%       parses it.
+%
+%       xmdParse(sFilename) - opens the file <sFilename> and parses it. sFilename is a
+%       MATLAB string (char array) and can be either a full path to a file, or a simply
+%       the name of a file in the current working director.
+%
+%   Outputs: Information about the model in a format TBD.
+%
+%   See also: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% ARGUMENT CHECKING
 narginchk(0,1);
@@ -18,7 +40,7 @@ switch nargin
             error('DESFrame:XMDParse:UserCancel',...
                 'I hope that was as good for you as it was for me.');
         end
-        [path,filename,extension] = fileparts(filename);
+        [path,filename,extension] = fileparts([path,filename]);
     % 1 argument, assume it is a filename with or without full path.
     case 1
         [path,filename,extension] = fileparts(varargin{1});
@@ -58,38 +80,43 @@ while(~isempty(currNode))
     % getNodeName returns a java.lang.String, so we need to conver that to a matlab string
     % (character vector) first
     currNodeName = char(currNode.getNodeName);
+    propertyNode = findChildNode(currNode,'properties');
+    nameNode = findChildNode(currNode,'name');
     switch currNodeName
         case 'state'
             fprintf('Found a state!\n');
             fprintf('State number: %d\n', str2double(char(currNode.getAttribute('id'))));
-            propertyNode = findChildNode(currNode,'properties');
+            %todo: ensure properties node is found and handle errors
             if(hasChildNode(propertyNode,'initial'))
                 fprintf('\t State is the initial state!\n');
             end
             if(hasChildNode(propertyNode,'marked'))
                 fprintf('\t State is marked!\n');
             end
+            %todo: ensure name node is found and handle errors
+            fprintf('State is named: %s\n', nameNode.getTextContent);
             numStates = numStates + 1;
         case 'event'
             fprintf('Found an event!\n');
             fprintf('Event number: %d\n', str2double(char(currNode.getAttribute('id'))));
-            propertyNode = findChildNode(currNode,'properties');
+            %todo: ensure properties node is found and handle errors
             if(hasChildNode(propertyNode,'controllable'))
                 fprintf('\t Event is controllable!\n');
             end
             if(hasChildNode(propertyNode,'observable'))
                 fprintf('\t Event is observable!\n');
             end
+            %todo: ensure name node is found and handle errors
+            fprintf('Event is named: %s\n', nameNode.getTextContent);
             numEvents = numEvents + 1;
         case 'transition'
+            % Transitions have no properties, only attributes
             fprintf('Found a transition!\n');
             fprintf('Transition number: %d\n', str2double(char(currNode.getAttribute('id'))));
             fprintf('\t Transition from state %d to %d on event %d\n',...
                 str2double(char(currNode.getAttribute('source'))),...
                 str2double(char(currNode.getAttribute('target'))),...
                 str2double(char(currNode.getAttribute('event'))));
-            propertyNode = findChildNode(currNode,'properties');
-            
             numTransitions = numTransitions + 1;
     end
     currNode = currNode.getNextSibling;
